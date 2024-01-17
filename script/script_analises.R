@@ -1,5 +1,5 @@
-
-
+setwd("~/GitHub/Boots_NME_Weibull")
+source("script/script_funcoes.R")
 # graficos#### 
 
 #cenario (a) alpha = 0.5, phi_1 = 1.0, phi_2 = 0.8
@@ -15,9 +15,8 @@ amostra_ca <- R.NME_Weibull(theta = theta_a, n = 1000)
 #     xlab = "Valores da amostra 2")
 
 #funcao de densidade
-setwd("S:\\dipeq\\copesp\\1 - Pastas pessoais\\Larissa\\artigo_computacional\\figuras")
+setwd("figuras")
 jpeg(paste0("fx.png"), quality = 100, width = 1400, height = 655)
-par(mfrow = c(1,2))
 curve(d.NME_weibull(x,theta = theta_a),
       from = 0, to =max(amostra_ca), col = "red", ylim = range(0:4.5),
       lwd = 3.5,# yaxt = "n",
@@ -47,7 +46,7 @@ legend(x = 4, y =4, box.lty=0,  #lty = c(3,7),
        legend=c(expression(alpha == 0.5 ~','~phi[1] == 1.0 ~","~phi[2] == 0.8),
                 expression(alpha == 0.8 ~','~phi[1] == 1.0 ~","~phi[2] == 1.2),
                 expression(alpha == 1.4 ~','~phi[1] == 1.0 ~","~phi[2] == 0.4)))
-dev.off()
+#dev.off()
 #funcao de risco
 jpeg(paste0("hx.png"), quality = 100, width = 700, height = 655)
 
@@ -87,8 +86,8 @@ theta_a = c(0.5, 1.0,0.8)
 theta0_a = c(0.4,0.8,0.7)
 alpha_IC = 0.05
 
-data.frame(matrix( c(0.5, 1.0,0.8,
-                     0.4,0.8,0.7), ncol = 2), names = c('a', "b", "c"))
+# data.frame(matrix( c(0.5, 1.0,0.8,
+#                      0.4,0.8,0.7), ncol = 2), names = c('a', "b", "c"))
 
 #amostras ####
 
@@ -159,7 +158,7 @@ set.seed(17390);b_cc_500_700 <- sim.boot(amostra_cc_500, B = n_B[3], theta = the
 ####Parte não paramétrica####
 
 
-setwd("S:\\dipeq\\copesp\\1 - Pastas pessoais\\Larissa\\artigo_computacional\\figuras")
+setwd("/figuras")
 jpeg(paste0("ca_alpha_np.png"), quality = 100, width = 662, height = 583)
 par(mfrow = c(4,3))
 plot(b_ca_100_100$MA_thetas.np$alpha.np, type = "l", main = "n = 100, B = 100", xlab = "n", ylab = expression(hat(alpha)))#alpha
@@ -270,7 +269,7 @@ dev.off()
 ####Parte não paramétrica####
 
 
-setwd("S:\\dipeq\\copesp\\1 - Pastas pessoais\\Larissa\\artigo_computacional\\figuras")
+setwd("figuras")
 jpeg(paste0("cc_alpha_np.png"), quality = 100, width = 662, height = 583)
 par(mfrow = c(4,3))
 plot(b_cc_100_100$MA_thetas.np$alpha.np, type = "l", main = "n = 100, B = 100", xlab = "n", ylab = expression(hat(alpha)))#alpha
@@ -377,7 +376,7 @@ dev.off()
 
 #Tabelas####
 
-setwd("S:\\dipeq\\copesp\\1 - Pastas pessoais\\Larissa\\artigo_computacional\\tabelas")
+setwd("tabelas")
 
 ##estimativa boots####
 
@@ -462,7 +461,7 @@ tab.estboots_cc_final <- rbind(tab_n100_np_p,
 names(tab.estboots_cc_final) <- c("n", "par", "B_100_np", "B_100_p", "B_500_np", "B_500_p", "B_700_np", "B_700_p")
 rm(tab_n100_np_p,tab_n250_np_p, tab_n400_np_p)
 
-setwd("S:\\dipeq\\copesp\\1 - Pastas pessoais\\Larissa\\artigo_computacional\\tabelas")
+setwd("tabelas")
 write.csv2(tab.estboots_ca_final, "est.boots.tab_ca_final.csv")
 
 write.csv2(tab.estboots_cc_final, "est.boots.tab_cc_final.csv")
@@ -548,7 +547,7 @@ tab.vies_cc_final <- rbind(tab_n100_np_p,
 names(tab.vies_cc_final) <- c("n", "par", "B_100_np", "B_100_p", "B_500_np", "B_500_p", "B_700_np", "B_700_p")
 rm(tab_n100_np_p,tab_n250_np_p, tab_n400_np_p)
 
-setwd("S:\\dipeq\\copesp\\1 - Pastas pessoais\\Larissa\\artigo_computacional\\tabelas")
+setwd("tabelas")
 write.csv2(tab.vies_ca_final, "vies.bots.tab_ca_final.csv")
 
 write.csv2(tab.vies_cc_final, "vies.bots.tab_cc_final.csv")
@@ -634,13 +633,13 @@ tab.ep_cc_final <- rbind(tab_n100_np_p,
 names(tab.ep_cc_final) <- c("n", "par", "B_100_np", "B_100_p", "B_500_np", "B_500_p", "B_700_np", "B_700_p")
 rm(tab_n100_np_p,tab_n250_np_p, tab_n400_np_p)
 
-setwd("S:\\dipeq\\copesp\\1 - Pastas pessoais\\Larissa\\artigo_computacional\\tabelas")
+setwd("tabelas")
 write.csv2(tab.ep_ca_final, "ep.bots.tab_ca_final.csv")
 
 write.csv2(tab.ep_cc_final, "ep.bots.tab_cc_final.csv")
 
 
-setwd("S:\\dipeq\\copesp\\1 - Pastas pessoais\\Larissa\\artigo_computacional\\imagem.R")
+setwd("imagem.R")
 
 save.image("artigo_imagem_22122023.RData")
 
