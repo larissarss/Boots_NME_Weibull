@@ -115,6 +115,9 @@ sim.boot<-function(amostra,B, theta,theta0,alpha_IC){
   phi_1.p <- numeric()
   phi_2.p <- numeric()
   
+  alpha = theta[1]
+  phi_1 = theta[2]
+  phi_2 = theta[3]
   
   op <- optim(par=theta0,fn=l_vero,x=amostra,method = "L-BFGS-B",
               lower = c(0.01,0.01,0.01), upper = c(Inf, Inf, Inf),
@@ -148,12 +151,12 @@ sim.boot<-function(amostra,B, theta,theta0,alpha_IC){
   }
   
   #vies
-  vies.np_alpha <- alpha.np - mean(alpha.np)
-  vies.np_phi_1 <- phi_1.np - mean(phi_1.np)
-  vies.np_phi_2 <- phi_2.np - mean(phi_2.np)
-  vies.p_alpha <- alpha.p - mean(alpha.p)
-  vies.p_phi_1 <- phi_1.p - mean(phi_1.p)
-  vies.p_phi_2 <- phi_2.p - mean(phi_2.p)
+  vies.np_alpha <- alpha.np - alpha
+  vies.np_phi_1 <- phi_1.np - phi_1
+  vies.np_phi_2 <- phi_2.np - phi_2
+  vies.p_alpha <- alpha.p - alpha
+  vies.p_phi_1 <- phi_1.p - phi_1
+  vies.p_phi_2 <- phi_2.p - phi_2
   #erro padrao
   ep.np_alpha <- sqrt(sum(vies.np_alpha^2)/(length(amostra)-1))
   ep.np_phi_1 <- sqrt(sum(vies.np_phi_1^2)/(length(amostra)-1))
